@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>¿Me perdonas?</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fff0f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .titulo {
+      font-size: 2.2em;
+      color: #c71585;
+      margin-bottom: 10px; /* antes 20px */
+    }
+
+    .love-img {
+      width: 80%;
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff69b4;
+      margin-bottom: 50px; /* más separación */
+    }
+
+    .buttons-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    #btn-si {
+      background-color: #32cd32;
+      color: white;
+      position: relative;
+      z-index: 2;
+    }
+
+    #btn-no {
+      background-color: #dc143c;
+      color: white;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 99;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 90%;
+      box-shadow: 0 0 20px #ff69b4;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 30px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #confetti {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2em;
+      z-index: 100;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .btn {
+        font-size: 1em;
+        padding: 10px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="confetti"></div>
+
+  <h1 class="titulo">¿Me perdonas? ❤️</h1>
+  <img src="https://ih1.redbubble.net/image.5470216614.7041/raf,360x360,075,t,fafafa:ca443f4786.u2.jpg" alt="Imagen de amor" class="love-img">
+
+  <div class="buttons-container">
+    <button id="btn-si" class="btn">Sí</button>
+    <button id="btn-no" class="btn">No</button>
+  </div>
+
+  <!-- Modal SÍ -->
+  <div id="modal-si" class="modal hidden">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModales()">&times;</span>
+      <p>YEEIIIII, glachas por perdonarmeeeee, te amodorooooo </p> <br>
+      <p>ATT: Tu gordito</p>
+    </div>
+  </div>
+
+  <script>
+    const btnSi = document.getElementById("btn-si");
+    const btnNo = document.getElementById("btn-no");
+    const modalSi = document.getElementById("modal-si");
+
+    let siScale = 1;
+
+    btnSi.addEventListener("click", () => {
+      modalSi.classList.remove("hidden");
+      lanzarConfetti();
+    });
+
+    btnNo.addEventListener("click", () => {
+      siScale += 0.1;
+      btnSi.style.transform = `scale(${siScale})`;
+    });
+
+    function cerrarModales() {
+      modalSi.classList.add("hidden");
+    }
+
+    function lanzarConfetti() {
+      const confetti = document.getElementById("confetti");
+      confetti.innerHTML = "🎊🎉💖🎉🎊";
+      setTimeout(() => confetti.innerHTML = "", 3000);
+    }
+  </script>
+
+</body>
+</html>
